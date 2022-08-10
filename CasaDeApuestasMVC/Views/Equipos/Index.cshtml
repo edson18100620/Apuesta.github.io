@@ -1,0 +1,157 @@
+﻿<div class="alert alert-primary">
+    <div class="row">
+        <div class="col-md-4">
+            <h4>Mantenimiento de Equipos</h4>
+        </div>
+        <div class="col-md-2">
+            <button id="btnAgregarEquipos" class="btn btn-success">
+                Agregar
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalRegistroEquipos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Mantenimiento de Equiposs</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>IdPais</label>
+                                <input type="text" class="form-control" id="txtPaisId" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Nombre</label>
+                                <input type="text" class="form-control" id="txtNombre" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary btnGuardarEquipos" id="btnGuardarEquipos">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="hidIdEquipos" value="-1" />
+
+<div id="divListadoEquipos" class="divListadoEquiposABC">
+</div>
+
+
+<script>
+
+     $("#divListadoEquipos").on('click','.btnEliminarEquipos',function()
+     {
+         let vIdEquipos = $(this).attr("data-id");
+
+         if(confirm("¿Está seguro de eliminar la equipos?")){
+
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("Eliminar","Equipos")',
+                data:{
+                    idEquipos: vIdEquipos
+                },
+                 cache:false,
+                success: function(result)
+                {
+                    if(result){
+                        CargarListadoEquipos();
+                    }else{
+                        alert("Ocurrió un error al eliminar el equipo...")
+                    }
+                }
+            })
+         }
+     });
+
+
+    $("#divListadoEquipos").on('click','.btnEditarEquipos',function(){
+        let vIdEquipos = $(this).attr("data-id")
+        $("#hidIdEquipos").val(vIdEquipos);
+        let modalRegistro = $("#modalRegistroEquipos");
+
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Obtener","Equipos")',
+            data: {
+                idEquipos: vIdEquipos
+            },
+            cache:false,
+            success: function(objEquipos)
+            {
+                $("#txtPaisId").val(objEquipos.paisId);
+                $("#txtNombre").val(objEquipos.nombre);
+                modalRegistro.modal("show");
+            }
+        });
+
+    });
+
+
+
+    CargarListadoEquipos();
+
+    function CargarListadoEquipos()
+    {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Listado","Equipos")',
+            cache:false,
+            success: function(dataHTMLEquiposs)
+            {
+                $("#divListadoEquipos").html(dataHTMLEquiposs);
+            }
+        });
+    }
+
+    //Button click btnAgregar
+    $("#btnAgregarEquipos").click(function(){
+        $("#hidIdEquipos").val(-1);
+    //Show modal
+        $("#modalRegistroEquipos").modal("show");
+    });
+
+    //Button click btnGuardarEquipos
+    $(".btnGuardarEquipos").click(function(){
+        var idEquipos = $("#hidIdEquipos").val();
+        var paisId = $("#txtPaisId").val();
+        var nombre = $("#txtNombre").val();
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Guardar","Equipos")',
+            data: {
+                idEquipos: idEquipos,
+                paisId: paisId,
+                nombre: nombre  
+            },
+            cache:false,
+            success: function(result)
+            {
+                if(result){
+                  $("#modalRegistroEquipos").modal("hide");
+                  CargarListadoEquipos();
+                }else{
+                    alert("Ocurrió un error al registrar un equipos")
+                }
+            }
+        });
+    });
+
+
+
+</script>

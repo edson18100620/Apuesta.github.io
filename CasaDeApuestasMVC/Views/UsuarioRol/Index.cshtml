@@ -1,0 +1,34 @@
+﻿<div class="alert alert-primary">
+    <div class="row">
+        <div class="col-md-4">
+            <h1>Mantenimiento de UsuarioRol</h1>
+        </div>
+        <div class="col-md-2">
+            <button id="btnAgregarUsuarioRol" class="btn btn-success">
+                Agregar  
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="divListadoUsuarioRol" class="divListadoUsuarioRol">
+
+</div>
+
+<script>
+
+    CargarListadoUsuarioRol()
+    function CargarListadoUsuarioRol()
+    {
+
+        $.ajax({
+
+            type: "GET",
+            url: "@Url.Action("Listado","UsuarioRol")",
+            cache: false,
+            success: function(dataHTMLUsuarioRol) {
+                $("#divListadoUsuarioRol").html(dataHTMLUsuarioRol)
+            }
+        });
+    }
+</script>

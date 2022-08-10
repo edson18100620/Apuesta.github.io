@@ -1,0 +1,181 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      
+      <meta charset="utf-0">
+      <title>Animated Sidebar Menu | CodingLab</title>
+      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   </head>
+   <body>
+       <div class="col-md-12 text-end">
+        <button onclick="location.href='http://localhost:5175/Usuario/Login'" type="button" class="btn btn-outline-primary me-2">Iniciar Sesiòn</button>
+        <button onclick="location.href='http://localhost:5175/Usuario/Registro'" type="button" class="btn btn-primary">Registro</button>
+      </div>
+      <div class="wrapper">
+         <input type="checkbox" id="btn" hidden>
+         <label for="btn" class="menu-btn">
+         <i class="fas fa-bars"></i>
+         <i class="fas fa-times"></i>
+         </label>
+         <nav id="sidebar">
+            <div class="title">
+                <a class="navbar-brand" href="#">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1246/1246312.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
+                    CASA DE APUESTAS
+                </a>
+            </div>
+            <ul class="list-items">
+                
+                <div class="d-flex align-items-start">
+                    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <button class="nav-link active"  id="v-pills-inicio-tab" data-bs-toggle="pill" data-bs-target="#v-pills-inicio" type="button" role="tab" aria-controls="v-pills-inicio" aria-selected="true">INICIO</button>
+                        <button onclick="location.href='http://localhost:5175/Partido/Index'" class="nav-link" id="v-pills-envivo-tab" data-bs-toggle="pill" data-bs-target="#v-pills-envivo" type="button" role="tab" aria-controls="v-pills-envivo" aria-selected="false">EN VIVO</button>
+                        <button class="nav-link" id="v-pills-enbreve-tab" data-bs-toggle="pill" data-bs-target="#v-pills-enbreve" type="button" role="tab" aria-controls="v-pills-enbreve" aria-selected="false">EN BREVE</button>
+                        <button class="nav-link" id="v-pills-historial-tab" data-bs-toggle="pill" data-bs-target="#v-pills-historial" type="button" role="tab" aria-controls="v-pills-historial" aria-selected="false">HISTORIAL</button>
+                        <button class="nav-link" id="v-pills-tusapuestas-tab" data-bs-toggle="pill" data-bs-target="#v-pills-tusapuestas" type="button" role="tab" aria-controls="v-pills-tusapuestas" aria-selected="false">TUS APUESTAS</button>
+                        <button onclick="location.href='http://localhost:5175/Partido/Index'" class="nav-link" id="v-pills-configuracion-tab" data-bs-toggle="pill" data-bs-target="#v-pills-configuracion" type="button" role="tab" aria-controls="v-pills-configuracion" aria-selected="false">CONFIGURACION</button>
+
+                        <li class="nav-item dropend">
+                            <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">EVENTOS POPULARES
+
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Separated link</a></li>
+                            </ul>
+                        </li>
+                        <button class="nav-link" id="v-pills-copalibertadores-tab" data-bs-toggle="pill" data-bs-target="#v-pills-copalibertadores" type="button" role="tab" aria-controls="v-pills-copalibertadores" aria-selected="false">Copa Libertadores</button>
+                        <button class="nav-link" id="v-pills-qatar2022-tab" data-bs-toggle="pill" data-bs-target="#v-pills-qatar2022" type="button" role="tab" aria-controls="v-pills-qatar2022" aria-selected="false">Qatar 2022</button>
+                        <button class="nav-link" id="v-pills-ligaespañola-tab" data-bs-toggle="pill" data-bs-target="#v-pills-ligaespañola" type="button" role="tab" aria-controls="v-pills-ligaespañola" aria-selected="false">Liga Española</button>
+                        <button class="nav-link" id="v-pills-ligabrasila-tab" data-bs-toggle="pill" data-bs-target="#v-pills-ligabrasila" type="button" role="tab" aria-controls="v-pills-ligabrasila" aria-selected="false">Liga Brasil A</button>
+                    </div>
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-inicio" role="tabpanel" aria-labelledby="v-pills-inicio-tab" tabindex="0">...</div>
+                        <div class="tab-pane fade" id="v-pills-envivo" role="tabpanel" aria-labelledby="v-pills-envivo-tab" tabindex="0">...</div>
+                        <div class="tab-pane fade" id="v-pills-enbreve" role="tabpanel" aria-labelledby="v-pills-enbreve-tab" tabindex="0">...</div>
+                        <div class="tab-pane fade" id="v-pills-historial" role="tabpanel" aria-labelledby="v-pills-historial-tab" tabindex="0">...</div>
+                        <div class="tab-pane fade" id="v-pills-tusapuestas" role="tabpanel" aria-labelledby="v-pills-tusapuestas-tab" tabindex="0">...</div>
+                        <div class="tab-pane fade" id="v-pills-configuracion" role="tabpanel" aria-labelledby="v-pills-configuracion-tab" tabindex="0">...</div>
+                        <div class="tab-pane fade" id="v-pills-copalibertadores" role="tabpanel" aria-labelledby="v-pills-copalibertadores-tab" tabindex="0">...</div>
+                        <div class="tab-pane fade" id="v-pills-qatar2022" role="tabpanel" aria-labelledby="v-pills-qatar2022-tab" tabindex="0">...</div>
+                        <div class="tab-pane fade" id="v-pills-ligaespañola" role="tabpanel" aria-labelledby="v-pills-ligaespañola-tab" tabindex="0">...</div>
+                        <div class="tab-pane fade" id="v-pills-ligabrasila" role="tabpanel" aria-labelledby="v-pills-ligabrasila-tab" tabindex="0">...</div>
+                    </div>
+                </div>
+
+
+
+               @*<li><a asp-controller="Home" asp-action="Index"><i class="fas fa-home"></i>Home</a></li>
+               <li><a href="#"><i class="fas fa-sliders-h"></i>En Vivo</a></li>
+               <li><a href="#"><i class="fas fa-address-book"></i>Services</a></li>
+               <li><a href="#"><i class="fas fa-cog"></i>Settings</a></li>
+               <li><a href="#"><i class="fas fa-stream"></i>Features</a></li>
+               <li><a href="#"><i class="fas fa-user"></i>About us</a></li>
+               <li><a href="#"><i class="fas fa-globe-asia"></i>Languages</a></li>
+               <li><a href="#"><i class="fas fa-envelope"></i>Contact us</a></li>*@
+
+
+
+
+
+
+               <div class="icons">
+                  <a href="#"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#"><i class="fab fa-twitter"></i></a>
+                  <a href="#"><i class="fab fa-github"></i></a>
+                  <a href="#"><i class="fab fa-youtube"></i></a>
+               </div>
+            </ul>
+         </nav>
+      </div>
+      <div class="content">
+        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              </div>
+              <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="2000">
+                  <img src="https://wallpaperaccess.com/full/2881943.jpg" width="1920" height="715" class="d-block w-100" alt="...">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h4>MESSI VS CRISTIANO</h4>
+                    <p>EL ENCUENTRO DE ALIANZA LIMA CONTRA UNIVERSITARIO DEPORTES.</p>
+                  </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                  <img src="https://wallpaperaccess.com/full/1398702.jpg" width="1920" height="715" class="d-block w-100" alt="...">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h4>¡EN VIVO Y EN DIRECTO! </h4>
+                    <p>Some representative placeholder content for the second slide.</p>
+                  </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                  <img src="https://pbs.twimg.com/media/FBHHWcFWUAkoI_4?format=jpg&name=large" width="1920" height="715" class="d-block w-100" alt="...">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h4>Third slide label</h4>
+                    <p>Some representative placeholder content for the third slide.</p>
+                  </div>
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+        </div>
+      </div>
+   </body>
+</html>
+
+
+@*<div class="d-flex align-items-start">
+    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <button class="nav-link active"  id="v-pills-inicio-tab" data-bs-toggle="pill" data-bs-target="#v-pills-inicio" type="button" role="tab" aria-controls="v-pills-inicio" aria-selected="true">INICIO</button>
+        <button class="nav-link" id="v-pills-envivo-tab" data-bs-toggle="pill" data-bs-target="#v-pills-envivo" type="button" role="tab" aria-controls="v-pills-envivo" aria-selected="false">EN VIVO</button>
+        <button class="nav-link" id="v-pills-enbreve-tab" data-bs-toggle="pill" data-bs-target="#v-pills-enbreve" type="button" role="tab" aria-controls="v-pills-enbreve" aria-selected="false">EN BREVE</button>
+        <button class="nav-link" id="v-pills-historial-tab" data-bs-toggle="pill" data-bs-target="#v-pills-historial" type="button" role="tab" aria-controls="v-pills-historial" aria-selected="false">HISTORIAL</button>
+        <button class="nav-link" id="v-pills-tusapuestas-tab" data-bs-toggle="pill" data-bs-target="#v-pills-tusapuestas" type="button" role="tab" aria-controls="v-pills-tusapuestas" aria-selected="false">TUS APUESTAS</button>
+        <button onclick="location.href='http://localhost:5175/Partido/Index'" class="nav-link" id="v-pills-configuracion-tab" data-bs-toggle="pill" data-bs-target="#v-pills-configuracion" type="button" role="tab" aria-controls="v-pills-configuracion" aria-selected="false">CONFIGURACION</button>
+
+        <li class="nav-item dropend">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">EVENTOS POPULARES
+
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Separated link</a></li>
+            </ul>
+        </li>
+        <button class="nav-link" id="v-pills-copalibertadores-tab" data-bs-toggle="pill" data-bs-target="#v-pills-copalibertadores" type="button" role="tab" aria-controls="v-pills-copalibertadores" aria-selected="false">Copa Libertadores</button>
+        <button class="nav-link" id="v-pills-qatar2022-tab" data-bs-toggle="pill" data-bs-target="#v-pills-qatar2022" type="button" role="tab" aria-controls="v-pills-qatar2022" aria-selected="false">Qatar 2022</button>
+        <button class="nav-link" id="v-pills-ligaespañola-tab" data-bs-toggle="pill" data-bs-target="#v-pills-ligaespañola" type="button" role="tab" aria-controls="v-pills-ligaespañola" aria-selected="false">Liga Española</button>
+        <button class="nav-link" id="v-pills-ligabrasila-tab" data-bs-toggle="pill" data-bs-target="#v-pills-ligabrasila" type="button" role="tab" aria-controls="v-pills-ligabrasila" aria-selected="false">Liga Brasil A</button>
+    </div>
+    <div class="tab-content" id="v-pills-tabContent">
+        <div class="tab-pane fade show active" id="v-pills-inicio" role="tabpanel" aria-labelledby="v-pills-inicio-tab" tabindex="0">...</div>
+        <div class="tab-pane fade" id="v-pills-envivo" role="tabpanel" aria-labelledby="v-pills-envivo-tab" tabindex="0">...</div>
+        <div class="tab-pane fade" id="v-pills-enbreve" role="tabpanel" aria-labelledby="v-pills-enbreve-tab" tabindex="0">...</div>
+        <div class="tab-pane fade" id="v-pills-historial" role="tabpanel" aria-labelledby="v-pills-historial-tab" tabindex="0">...</div>
+        <div class="tab-pane fade" id="v-pills-tusapuestas" role="tabpanel" aria-labelledby="v-pills-tusapuestas-tab" tabindex="0">...</div>
+        <div class="tab-pane fade" id="v-pills-configuracion" role="tabpanel" aria-labelledby="v-pills-configuracion-tab" tabindex="0">...</div>
+        <div class="tab-pane fade" id="v-pills-copalibertadores" role="tabpanel" aria-labelledby="v-pills-copalibertadores-tab" tabindex="0">...</div>
+        <div class="tab-pane fade" id="v-pills-qatar2022" role="tabpanel" aria-labelledby="v-pills-qatar2022-tab" tabindex="0">...</div>
+        <div class="tab-pane fade" id="v-pills-ligaespañola" role="tabpanel" aria-labelledby="v-pills-ligaespañola-tab" tabindex="0">...</div>
+        <div class="tab-pane fade" id="v-pills-ligabrasila" role="tabpanel" aria-labelledby="v-pills-ligabrasila-tab" tabindex="0">...</div>
+    </div>
+</div>*@

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<PartidoModel>
+
+<table id="tbListadoPartido" class="table table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>EquipoLocId</th>
+            <th>EquipoVisId</th>
+            <th>CategoriaId</th>
+            <th>CuotaLocId</th>
+            <th>CuotaVisId</th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody class="cuerpoTablas">
+        @foreach(var partido in Model)
+        {
+            <tr>
+                <td>@partido.Id</td>
+                <td>@partido.EquipoLocId</td>
+                <td>@partido.EquipoVisId</td>
+                <td>@partido.CategoriaId</td>
+                <td>@partido.CuotaLoc</td>
+                <td>@partido.CuotaVis</td>
+                <td>
+                    <button onclick="location.href='http://localhost:5175/ApuestasUser/Index'" class="btn btn btn-info btnApostarPartido"data-id="@partido.Id">
+                        Apostar
+                    </button>
+                </td>
+            </tr>
+        }
+                        
+    </tbody>
+</table>
+
+<script>
+    loadTable()
+    function loadTable(){
+        var table = $('#tbListadoPartido').DataTable({
+            lengthChange: false,
+            
+        });
+        table.buttons().container().insertBefore("#tbListadoPartido_filter");
+    }
+</script>

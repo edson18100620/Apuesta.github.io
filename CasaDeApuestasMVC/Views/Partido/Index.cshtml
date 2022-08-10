@@ -1,0 +1,27 @@
+﻿<div class="alert alert-primary">
+    <div class="row">
+        <div class="col-md-4">
+            <h4>Lista de Partidos EN VIVIO</h4>
+        </div>
+    </div>
+</div>
+
+<div id="divListadoPartido" class="divListadoPartidoABC">
+</div>
+
+
+<script>
+     CargarListadoPartido();
+     function CargarListadoPartido()
+    {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Listado","Partido")',
+            cache:false,
+            success: function(dataHTMLPartidos)
+            {
+                $("#divListadoPartido").html(dataHTMLPartidos);
+            }
+        });
+    }
+</script>

@@ -1,0 +1,34 @@
+﻿<div class="alert alert-primary">
+    <div class="row">
+        <div class="col-md-4">
+            <h1>Mantenimiento de ModalidadPago</h1>
+        </div>
+        <div class="col-md-2">
+            <button id="btnAgregarModalidadPago" class="btn btn-success">
+                Agregar  
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="divListadoModalidadPago" class="divListadoModalidadPago">
+
+</div>
+
+<script>
+
+    CargarListadoModalidadPago()
+    function CargarListadoModalidadPago()
+    {
+
+        $.ajax({
+
+            type: "GET",
+            url: "@Url.Action("Listado","ModalidadPago")",
+            cache: false,
+            success: function(dataHTMLModalidadPago) {
+                $("#divListadoModalidadPago").html(dataHTMLModalidadPago)
+            }
+        });
+    }
+</script>

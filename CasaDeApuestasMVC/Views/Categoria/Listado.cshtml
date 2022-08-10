@@ -1,0 +1,50 @@
+﻿@model IEnumerable<CategoriaModel>
+<script type="text/javascript">
+    function aleatorio(){
+        var aleatorio = Math.random();
+    }
+</script>
+<table id="tbListadoCategoria" class="table table-hover">
+    
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Descripcion</th>
+            <th>Apuestas Actuales</th>
+            <th>Visitas en el Dia</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var categoria in Model)
+        {
+            <tr>
+                <td>@categoria.Id</td>
+                <td>@categoria.Descripcion</td>
+                <td>Math.random()</td>
+                <td>aleatorio()</td>
+                
+                <td>
+                    <button class="btn btn-warning btnEditarCategoria"data-id="@categoria.Id">
+                        Editar
+                    </button>
+                    <button class="btn btn-danger btnEliminarCategoria"data-id="@categoria.Id">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+        }
+                        
+    </tbody>
+</table>
+
+<script>
+    loadTable()
+    function loadTable(){
+        var table = $('#tbListadoCategoria').DataTable({
+            lengthChange: false,
+            buttons:['copy','excel','pdf','colvis']
+        });
+        table.buttons().container().insertBefore("#tbListadoCategoria_filter");
+    }
+</script>

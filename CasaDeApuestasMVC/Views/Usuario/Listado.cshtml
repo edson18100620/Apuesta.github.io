@@ -1,0 +1,63 @@
+﻿@model IEnumerable<UsuarioModel>
+
+<table id="tbListadoUsuario" class="table table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Paterno</th>
+            <th>Materno</th>
+            <th>Telefono</th>
+            <th>Direccion</th>
+            <th>FechaNacimiento</th>
+            <th>Genero</th>
+            <th>DNI</th>
+            <th>Correo</th>
+            <th>RolID</th>
+            <th>Clave</th>
+            <th>PaisID</th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var usuario in Model)
+        {
+            <tr>
+                <td>@usuario.Id</td>
+                <td>@usuario.Nombre</td>
+                <td>@usuario.Paterno</td>
+                <td>@usuario.Materno</td>
+                <td>@usuario.Telefono</td>
+                <td>@usuario.Direccion</td>
+                <td>@usuario.FechaNacimiento</td>
+                <td>@usuario.Genero</td>
+                <td>@usuario.NumeroDocumento</td>
+                <td>@usuario.Correo</td>
+                <td>@usuario.RolId</td>
+                <td>@usuario.Clave</td>
+                <td>@usuario.PaisId</td>
+                <td>
+                    <button class="btn btn-warning btnEditarUsuario"data-id="@usuario.Id">
+                        Editar
+                    </button>
+                    <button class="btn btn-danger btnEliminarUsuario"data-id="@usuario.Id">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+        }
+                        
+    </tbody>
+</table>
+
+<script>
+    loadTable()
+    function loadTable(){
+        var table = $('#tbListadoUsuario').DataTable({
+            lengthChange: false,
+            buttons:['copy','excel','pdf','colvis']
+        });
+        table.buttons().container().insertBefore("#tbListadoUsuario_filter");
+    }
+</script>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<AudioVisualModel>
+
+<table id="tbListadoAudioVisual" class="table table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var audioVisual in Model)
+        {
+            <tr>
+                <td>@audioVisual.Id</td>
+                <td>@audioVisual.Nombre</td>
+                <td>@audioVisual.Descripcion</td>
+                <td>
+                    <button class="btn btn-warning btnEditarAudioVisual"data-id="@audioVisual.Id">
+                        Editar
+                    </button>
+                    <button class="btn btn-danger btnEliminarAudioVisual"data-id="@audioVisual.Id">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+        }
+                        
+    </tbody>
+</table>
+
+<script>
+    loadTable()
+    function loadTable(){
+        var table = $('#tbListadoAudioVisual').DataTable({
+            lengthChange: false,
+            buttons:['copy','excel','pdf','colvis']
+        });
+        table.buttons().container().insertBefore("#tbListadoAudioVisual_filter");
+    }
+</script>

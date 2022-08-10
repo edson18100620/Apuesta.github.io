@@ -1,0 +1,149 @@
+﻿<div class="alert alert-primary">
+    <div class="row">
+        <div class="col-md-4">
+            <h4>Mantenimiento de Categorias</h4>
+        </div>
+        <div class="col-md-2">
+            <button id="btnAgregarCategoria" class="btn btn-success">
+                Agregar
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalRegistroCategoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Mantenimiento de Categorias</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Descripcion</label>
+                                <input type="text" class="form-control" id="txtDescripcion" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary btnGuardarCategoria" id="btnGuardarCategoria">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="hidIdCategoria" value="-1" />
+
+<div id="divListadoCategoria" class="divListadoCategoriaABC">
+</div>
+
+
+<script>
+
+     $("#divListadoCategoria").on('click','.btnEliminarCategoria',function()
+     {
+         let vIdCategoria = $(this).attr("data-id");
+
+         if(confirm("¿Está seguro de eliminar la categoria?")){
+
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("Eliminar","Categoria")',
+                data:{
+                    idCategoria: vIdCategoria
+                },
+                 cache:false,
+                success: function(result)
+                {
+                    if(result){
+                        CargarListadoCategoria();
+                    }else{
+                        alert("Ocurrió un error al eliminar la categoria...")
+                    }
+                }
+            })
+         }
+     });
+
+
+    $("#divListadoCategoria").on('click','.btnEditarCategoria',function(){
+        let vIdCategoria = $(this).attr("data-id")
+        $("#hidIdCategoria").val(vIdCategoria);
+        let modalRegistro = $("#modalRegistroCategoria");
+
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Obtener","Categoria")',
+            data: {
+                idCategoria: vIdCategoria
+            },
+            cache:false,
+            success: function(objCategoria)
+            {
+                $("#txtDescripcion").val(objCategoria.descripcion);
+                modalRegistro.modal("show");
+            }
+        });
+
+    });
+
+
+
+    CargarListadoCategoria();
+
+    function CargarListadoCategoria()
+    {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Listado","Categoria")',
+            cache:false,
+            success: function(dataHTMLCategorias)
+            {
+                $("#divListadoCategoria").html(dataHTMLCategorias);
+            }
+        });
+    }
+
+    //Button click btnAgregar
+    $("#btnAgregarCategoria").click(function(){
+        $("#hidIdCategoria").val(-1);
+    //Show modal
+        $("#modalRegistroCategoria").modal("show");
+    });
+
+    //Button click btnGuardarCategoria
+    $(".btnGuardarCategoria").click(function(){
+        //var idCategoria = $("#hidIdCategoria").val();
+        var descripcion = $("#txtDescripcion").val();
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Guardar","Categoria")',
+            data: {
+                idCategoria: -1,
+                descripcion: descripcion
+                
+            },
+            cache:false,
+            success: function(result)
+            {
+                if(result){
+                  $("#modalRegistroCategoria").modal("hide");
+                  CargarListadoCategoria();
+                }else{
+                    alert("Ocurrió un error al registrar un categoria")
+                }
+            }
+        });
+    });
+
+
+
+</script>

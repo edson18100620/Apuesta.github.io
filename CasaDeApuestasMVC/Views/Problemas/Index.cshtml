@@ -1,0 +1,263 @@
+﻿<div class="alert alert-primary">
+    <div class="row">
+        <div class="col-md-4">
+            <h4>Mantenimiento de Usuarios</h4>
+        </div>
+        <div class="col-md-2">
+            <button id="btnAgregarUsuario" class="btn btn-success">
+                Agregar
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalRegistroUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Mantenimiento de Usuarios</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Nombres</label>
+                                <input type="text" class="form-control" id="txtNombre" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Paterno</label>
+                                <input type="text" class="form-control" id="txtPaterno" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Materno</label>
+                                <input type="text" class="form-control" id="txtMaterno" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Telefono</label>
+                                <input type="text" class="form-control" id="txtTelefono" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Direccion</label>
+                                <input type="text" class="form-control" id="txtDireccion" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>FechaNacimiento</label>
+                                <input type="text" class="form-control" id="txtFechaNacimiento" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Genero</label>
+                                <input type="text" class="form-control" id="txtGenero" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Dni</label>
+                                <input type="text" class="form-control" id="txtDni" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Correo</label>
+                                <input type="text" class="form-control" id="txtCorreo" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Pais</label>
+                                <input type="text" class="form-control" id="hidIdPais" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>IdRol</label>
+                                <input type="text" class="form-control" id="txtRolId" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Clave</label>
+                                <input type="text" class="form-control" id="hidClave" />
+                            </div>
+                        </div>
+                    </div>
+                   
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary btnGuardarUsuario" id="btnGuardarUsuario">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="hidIdUsuario" value="-1" />
+
+<div id="divListadoUsuario" class="divListadoUsuarioABC">
+</div>
+
+
+<script>
+
+     $("#divListadoUsuario").on('click','.btnEliminarUsuario',function()
+     {
+         let vIdUsuario = $(this).attr("data-id");
+
+         if(confirm("¿Está seguro de eliminar al usuario?")){
+
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("Eliminar","Usuario")',
+                data:{
+                    idUsuario: vIdUsuario
+                },
+                 cache:false,
+                success: function(result)
+                {
+                    if(result){
+                        CargarListadoUsuario();
+                    }else{
+                        alert("Ocurrió un error al eliminar el usuario...")
+                    }
+                }
+            })
+         }
+     });
+
+
+    $("#divListadoUsuario").on('click','.btnEditarUsuario',function(){
+        let vIdUsuario = $(this).attr("data-id")
+        $("#hidIdUsuario").val(vIdUsuario);
+        let modalRegistro = $("#modalRegistroUsuario");
+
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Obtener","Usuario")',
+            data: {
+                idUsuario: vIdUsuario
+            },
+            cache:false,
+            success: function(objUsuario)
+            {
+                $("#txtNombre").val(objUsuario.nombre);
+                $("#txtPaterno").val(objUsuario.paterno);
+                $("#txtMaterno").val(objUsuario.materno);
+                $("#txtTelefono").val(objUsuario.city);
+                $("#txtDireccion").val(objUsuario.phone);
+                $("#txtFechaNacimiento").val(objUsuario.fechaNacimiento);
+                $("#txtGenero").val(objUsuario.genero);
+                $("#txtDni").val(objUsuario.dni);
+                $("#txtCorreo").val(objUsuario.correo);
+                $("#hidIdPais").val(objUsuario.idPais);
+                $("#txtRolId").val(objUsuario.rolId);
+                $("#txtClave").val(objUsuario.Clave);
+                modalRegistro.modal("show");
+            }
+        });
+
+    });
+
+
+
+    CargarListadoUsuario();
+
+    function CargarListadoUsuario()
+    {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Listado","Usuario")',
+            cache:false,
+            success: function(dataHTMLUsuarios)
+            {
+                $("#divListadoUsuario").html(dataHTMLUsuarios);
+            }
+        });
+    }
+
+    //Button click btnAgregar
+    $("#btnAgregarUsuario").click(function(){
+        $("#hidIdUsuario").val(-1);
+    //Show modal
+        $("#modalRegistroUsuario").modal("show");
+    });
+
+    //Button click btnGuardarUsuario
+    $(".btnGuardarUsuario").click(function(){
+        var idUsuario = $("#hidIdUsuario").val();
+        var idPais = $("#hidIdPais").val();
+        var nombre = $("#txtNombre").val();
+        var paterno = $("#txtPaterno").val();
+        var materno = $("#txtMaterno").val();
+        var telefono = $("#txtTelefono").val();
+        var direccion = $("#txtDireccion").val();
+        var fechaNacimiento = $("#txtFechaNacimiento").val();
+        var genero = $("#txtGenero").val();
+        var dni = $("#txtDni").val();
+        var correo = $("#txtCorreo").val();
+        var rolId = $("#txtRolId").val();
+        var clave = $("#txtClave").val();
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Guardar","Usuario")',
+            data: {
+                idUsuario: idUsuario,
+                idPais: idPais,
+                nombre: nombre,
+                paterno: paterno,
+                materno: materno,
+                telefono: telefono,
+                direccion: direccion,
+                fechaNacimiento: fechaNacimiento,
+                genero: genero,
+                dni: dni,
+                correo: correo,
+                rolId: rolId,
+                clave: clave
+            },
+            cache:false,
+            success: function(result)
+            {
+                if(result){
+                  $("#modalRegistroUsuario").modal("hide");
+                  CargarListadoUsuario();
+                }else{
+                    alert("Ocurrió un error al registrar un usuario")
+                }
+            }
+        });
+    });
+
+
+
+</script>

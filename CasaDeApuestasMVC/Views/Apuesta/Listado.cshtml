@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ApuestaModel>
+
+<table id="tbListadoApuesta" class="table table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>PartidoID</th>
+            <th>EquipoID</th>
+            <th>UsuarioID</th>
+            <th>ModalidadPagoID</th>
+            <th>Detalle</th>
+            <th>Monto</th>
+            <th>Estado</th>
+            <th>Fecha</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var apuesta in Model)
+        {
+            <tr>
+                <td>@apuesta.Id</td>
+                <td>@apuesta.PartidoId</td>
+                <td>@apuesta.EquipoId</td>
+                <td>@apuesta.UsuarioId</td>
+                <td>@apuesta.ModalidadId</td>
+                <td>@apuesta.Detalle</td>
+                <td>@apuesta.Monto</td>
+                <td>@apuesta.Estado</td>
+                <td>@apuesta.FechaApuesta</td>
+                <td>
+                    <button class="btn btn-warning btnEditarApuesta"data-id="@apuesta.Id">
+                        Editar
+                    </button>
+                    <button class="btn btn-danger btnEliminarApuesta"data-id="@apuesta.Id">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+        }
+                        
+    </tbody>
+</table>
+
+<script>
+    loadTable()
+    function loadTable(){
+        var table = $('#tbListadoApuesta').DataTable({
+            lengthChange: false,
+            buttons:['copy','excel','pdf','colvis']
+        });
+        table.buttons().container().insertBefore("#tbListadoApuesta_filter");
+    }
+</script>

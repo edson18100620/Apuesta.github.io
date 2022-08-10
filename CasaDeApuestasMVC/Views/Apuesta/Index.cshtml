@@ -1,0 +1,34 @@
+﻿<div class="alert alert-primary">
+    <div class="row">
+        <div class="col-md-4">
+            <h1>Mantenimiento de Apuesta</h1>
+        </div>
+        <div class="col-md-2">
+            <button id="btnAgregarApuesta" class="btn btn-success">
+                Agregar  
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="divListadoApuesta" class="divListadoApuesta">
+
+</div>
+
+<script>
+
+    CargarListadoApuesta()
+    function CargarListadoApuesta()
+    {
+
+        $.ajax({
+
+            type: "GET",
+            url: "@Url.Action("Listado","Apuesta")",
+            cache: false,
+            success: function(dataHTMLApuesta) {
+                $("#divListadoApuesta").html(dataHTMLApuesta)
+            }
+        });
+    }
+</script>
